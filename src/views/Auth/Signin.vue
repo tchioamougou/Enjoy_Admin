@@ -1,35 +1,42 @@
 <template>
   <FullScreenLayout>
     <div class="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
-
       <div
-        class="relative flex flex-col justify-center w-full h-screen   lg:flex-row dark:bg-gray-900"
+        class="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900"
       >
-        <div class="flex flex-col flex-1 w-full  lg:w-1/2">
-
+        <div class="flex flex-col flex-1 w-full lg:w-1/2">
           <div class="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
             <div>
               <div class="mb-2 sm:mb-6">
                 <h1
                   class="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md"
                 >
-                <strong>{{ $t('SignIn') }}</strong>
+                  <strong>{{ $t('SignIn') }}</strong>
                 </h1>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                 {{ $t('Enteryouremail') }}
+                  {{ $t('Enteryouremail') }}
                 </p>
               </div>
               <div>
-
                 <form @submit.prevent="handleSubmit">
-
                   <div class="space-y-3">
                     <p
                       v-if="error"
                       class="text-red-500 bg-red-100 border border-red-300 px-4 py-2 rounded-md text-md flex items-center space-x-2 w-fit mx-auto shadow-sm"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                       <span>{{ error }}</span>
                     </p>
@@ -70,7 +77,7 @@
                           :placeholder="$t('Enteryourpassword')"
                           class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                           required
-                          />
+                        />
                         <span
                           @click="togglePasswordVisibility"
                           class="absolute z-30 text-gray-500 -translate-y-1/2 cursor-pointer right-4 top-1/2 dark:text-gray-400"
@@ -157,7 +164,7 @@
                       <router-link
                         to="/reset-password"
                         class="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                        >{{$t('Forgotpassword')}}?</router-link
+                        >{{ $t('Forgotpassword') }}?</router-link
                       >
                     </div>
                     <!-- Button -->
@@ -166,8 +173,7 @@
                         type="submit"
                         class="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-purple-500 shadow-theme-xs hover:bg-purple-600"
                       >
-
-                       <span v-if="!isLoading">{{ $t('SignIn') }}</span>
+                        <span v-if="!isLoading">{{ $t('SignIn') }}</span>
                         <span v-else class="flex items-center gap-2">
                           <Spinner class="w-4 h-4" />
                           {{ $t('Processing') }}...
@@ -176,8 +182,8 @@
                     </div>
                   </div>
                 </form>
-                 <div>
-                <!--  <p
+                <div>
+                  <!--  <p
                     class="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start"
                   >
                     {{$t('Donthaveanaccount')}}?
@@ -188,9 +194,8 @@
                     >
                   </p>-->
                   <div class="mt-3 flex md:justify-end justify-center">
-          <ButtonLanguage></ButtonLanguage>
-          </div>
-
+                    <ButtonLanguage></ButtonLanguage>
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,12 +207,11 @@
           <div class="flex items-center justify-center z-50 shadow-xl h-screen">
             <common-grid-shape />
 
-          <img
-          src="@/assets/images/header/Tablet login-amico.svg"
-
-          alt="Background"
-          class="w-full h-screen object-cover rounded-lg"
-          />
+            <img
+              src="@/assets/images/header/Tablet login-amico.svg"
+              alt="Background"
+              class="w-full h-screen object-cover rounded-lg"
+            />
           </div>
         </div>
       </div>
@@ -216,17 +220,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref} from 'vue'
+import { ref } from 'vue'
 import CommonGridShape from '@/components/common/CommonGridShape.vue'
 import FullScreenLayout from '@/components/layout/FullScreenLayout.vue'
 import { useAuthStore } from '@/composables/user'
 import { useServiceStore } from '@/composables/serviceStore'
 import { useRouter } from 'vue-router'
 import { auth, validateEmail, validatePassword } from '@/services/api'
-import Spinner from '@/components/spinner/Spinner.vue';
+import Spinner from '@/components/spinner/Spinner.vue'
 import ButtonLanguage from '@/components/buttons/ButtonLanguage.vue'
 
-const isLoading = ref(false);
+const isLoading = ref(false)
 const authStore = useAuthStore()
 const serviceStore = useServiceStore()
 const router = useRouter()
@@ -235,81 +239,79 @@ const email = ref('')
 const password = ref('')
 const showPassword = ref(false)
 const keepLoggedIn = ref(false)
-const error = ref<string | null>(null);
-
+const error = ref<string | null>(null)
 
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value
 }
 
-
-
 const handleSubmit = async () => {
-  isLoading.value = true;
-  error.value = null;
+  isLoading.value = true
+  error.value = null
   try {
-    await validateEmail(email.value);
+    await validateEmail(email.value)
     //await validatePassword(email.value, password.value);
     const res = await auth({
       email: email.value,
       password: password.value,
       keepLoggedIn: keepLoggedIn.value,
-    });
-    const { user, user_token } = res.data.data;
-    const token = user_token.token;
+    })
+    const { user, user_token } = res.data.data
+    const token = user_token.token
 
     // Stocker les services et permissions
-    serviceStore.setService(res.data.data.userServices);
-    serviceStore.setPermissions(res.data.data.permissions);
+    serviceStore.setService(res.data.data.userServices)
+    serviceStore.setPermissions(res.data.data.permissions)
     if (keepLoggedIn.value) {
-      localStorage.setItem('auth_token', token);
+      localStorage.setItem('auth_token', token)
     } else {
-      sessionStorage.setItem('auth_token', token);
+      sessionStorage.setItem('auth_token', token)
     }
-    authStore.login(user, token);
-    authStore.setRoleId(user.roleId);
-    authStore.setUserId(user.id);
-    console.log("res.data.data", res.data.data);
+    authStore.login(user, token)
+    authStore.setRoleId(user.roleId)
+    authStore.setUserId(user.id)
+    console.log('res.data.data', res.data.data)
 
     if (user) {
-      const userServices = res.data.data.userServices || [];
+      const userServices = res.data.data.userServices || []
 
       if (userServices.length > 1) {
-        router.push('/service');
+        router.push('/service')
       } else if (userServices.length === 1) {
-        const service = userServices[0];
-        serviceStore.setServiceId(service.id);
-        serviceStore.setCurrentService(service);
+        const service = userServices[0]
+        serviceStore.setServiceId(service.id)
+        serviceStore.setCurrentService(service)
 
-        const rawCategory = service?.category;
-        const categoryName = typeof rawCategory === 'object' ? rawCategory.categoryName : rawCategory;
-        serviceStore.setServiceCategory(categoryName);
-        router.push('/welcome');
+        const rawCategory = service?.category
+        const categoryName =
+          typeof rawCategory === 'object' ? rawCategory.categoryName : rawCategory
+        serviceStore.setServiceCategory(categoryName)
+        router.push('/welcome')
       } else {
         // Aucun service : afficher une erreur
-        error.value = "Aucun service disponible pour cet utilisateur.";
+        error.value = 'Aucun service disponible pour cet utilisateur.'
       }
     } else {
-      error.value = "Erreur d'authentification utilisateur.";
+      error.value = "Erreur d'authentification utilisateur."
     }
   } catch (err: any) {
     if (err.response) {
-      error.value = err.response.data?.message || err.response.data?.error || "Une erreur s'est produite côté serveur.";
-      console.error("Erreur de connexion:", error.value);
+      error.value =
+        err.response.data?.message ||
+        err.response.data?.error ||
+        "Une erreur s'est produite côté serveur."
+      console.error('Erreur de connexion:', error.value)
     } else if (err.message) {
-      error.value = err.message;
-      console.error("Erreur de connexion (client):", error.value);
+      error.value = err.message
+      console.error('Erreur de connexion (client):', error.value)
     } else {
       // Cas totalement inconnu
-      error.value = "Une erreur inconnue s'est produite.";
-      console.error("Erreur inconnue:", err);
+      error.value = "Une erreur inconnue s'est produite."
+      console.error('Erreur inconnue:', err)
     }
-    console.error("Erreur handleSubmit:", err);
+    console.error('Erreur handleSubmit:', err)
   } finally {
-    isLoading.value = false;
+    isLoading.value = false
   }
-};
-
-
-
+}
 </script>
